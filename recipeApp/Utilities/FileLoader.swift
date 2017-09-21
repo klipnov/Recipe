@@ -18,7 +18,6 @@ class FileLoader {
     init() {}
     
     func load(filename: String) throws -> Data {
-        
         var split = [String]()
         
         //splits the filename
@@ -38,7 +37,6 @@ class FileLoader {
     }
     
     private func splitFileName(filename: String) throws -> [String] {
-        
         let splitFileName = filename.components(separatedBy: ".")
         
         guard splitFileName.count > 1 else {
