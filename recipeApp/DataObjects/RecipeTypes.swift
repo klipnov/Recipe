@@ -12,6 +12,9 @@ class RecipeTypes: NSObject, XMLParserDelegate {
     
     var names = [String]()
     
+    var element = String()
+    var name = String()
+    
     override init() {
         super.init()
         loadDataFromXML()
@@ -40,6 +43,24 @@ class RecipeTypes: NSObject, XMLParserDelegate {
     }
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        print(elementName)
+        
+        element = elementName
+        
+        if elementName == "name" {
+            name = String()
+        }
+    }
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        
+        if elementName == "name" {
+            names.append(name)
+        }
+    }
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        if element == "name" {
+            name += string
+        }
     }
 }

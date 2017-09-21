@@ -19,8 +19,8 @@ class RecipeTypesTests: XCTestCase {
     
     func testRecipeTypesCanLoadDataFromXMLFileAndInsertDataIntoNames() {
         let recipeTypes = RecipeTypes()
-                
-       // XCTAssertTrue(recipeTypes.names[0] == "Vegetarian")
+        
+       XCTAssertTrue(recipeTypes.names[0] == "Vegetarian")
     }
     
 }
