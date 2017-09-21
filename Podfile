@@ -6,7 +6,6 @@ target 'recipeApp' do
   use_frameworks!
 
   # Pods for recipeApp
-  pod 'AEXML'
 
   target 'recipeAppTests' do
     inherit! :search_paths
