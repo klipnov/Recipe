@@ -1,3 +1,14 @@
-PODFILE CHECKSUM: ce73800bbbbf69d729faadc0076486c548a4636d
+PODS:
+  - DTModelStorage (6.0.0-beta.1):
+    - DTModelStorage/Core (= 6.0.0-beta.1)
+  - DTModelStorage/Core (6.0.0-beta.1)
+
+DEPENDENCIES:
+  - DTModelStorage (~> 6.0.0-beta.1)
+
+SPEC CHECKSUMS:
+  DTModelStorage: c6fabf43baedd0740f64d11a3a6e78f967b17eb5
+
+PODFILE CHECKSUM: 3cad77352f80eff9804c8ebfaeb1a4c76fbd1f63
 
 COCOAPODS: 1.2.1.rc.1

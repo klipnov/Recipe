@@ -17,6 +17,34 @@ class RecipeListViewController: UIViewController {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "recipeCell")
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        viewModel.didUpdateRecipes = {
+            self.tableView.reloadData()
+        }
+        
+        viewModel.fetchRecipes()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let navigationViewController = segue.destination as? UINavigationController else {
+            return
+        }
+        
+        guard let recipeDetailViewController = navigationViewController.viewControllers.first as? RecipeDetailTableViewController else {
+            return
+        }
+        
+        recipeDetailViewController.presenter = self
+        
+        switch segue.identifier! {
+        case "newRecipe":
+            recipeDetailViewController.setupViewControllerForNewRecipe()
+        case "editRecipe":
+            recipeDetailViewController.setupViewControllerForEditRecipe()
+        default:
+            break
+        }
     }
 }
 
@@ -31,12 +59,12 @@ extension RecipeListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = { () -> UITableViewCell in
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell") else {
-                return UITableViewCell(style: .default, reuseIdentifier: "recipeCell")
-            }
-            return cell
-        }()
+        
+        let recipe = viewModel.recipes[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OneLabelCell") as! OneLabelTableViewCell
+        
+        cell.label.text = recipe.name
+        
         return cell
     }
     

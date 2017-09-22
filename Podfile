@@ -6,7 +6,8 @@ target 'recipeApp' do
   use_frameworks!
 
   # Pods for recipeApp
-
+  pod 'DTModelStorage', '~> 6.0.0-beta.1'
+  
   target 'recipeAppTests' do
     inherit! :search_paths
     # Pods for testing

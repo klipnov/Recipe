@@ -14,6 +14,7 @@ class RecipeTypes: NSObject, XMLParserDelegate {
     
     var element = String()
     var name = String()
+    let defaultRecipeXMLFile = "recipetypes.xml"
     
     override init() {
         super.init()
@@ -32,10 +33,11 @@ class RecipeTypes: NSObject, XMLParserDelegate {
     }
     
     private func loadFile() -> Data? {
+        
         let fileLoader = FileLoader()
 
         do {
-            return try fileLoader.load(filename: "recipetypes.xml")
+            return try fileLoader.load(filename: defaultRecipeXMLFile)
         } catch {
             print("Error: \(error)")
             return nil
@@ -59,6 +61,7 @@ class RecipeTypes: NSObject, XMLParserDelegate {
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
+        
         if element == "name" {
             name += string
         }
