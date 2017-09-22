@@ -8,20 +8,28 @@
 
 import Foundation
 
-enum RecipeSaveError: Error {
-    case nameIsLessThan2Characters
-    case typeIsEmpty
-    case saveError(String)
-}
-
 class RecipeDetailViewModel {
     
     let viewContext = CoreDataManager.shared.persistentContainer.viewContext
     var recipe: Recipe?
+    var sectionNames = ["", "Ingredients", "Steps"]
+    var rowData = [TableViewRowData]()
     
     init() {
         
     }
+    
+    func initializeRowData() {
+        let recipeName = TableViewRowData(rowName: "Recipe Name",
+                                          data: recipe?.name ?? nil,
+                                          cellType: .textfieldCell)
+        let recipeType = TableViewRowData(rowName: "Recipe Type",
+                                          data: recipe?.type ?? nil,
+                                          cellType: .twoLabelCell)
+        
+    }
+    
+    //Mark: - Create, save and delete
     
     func createANewRecipe() {
         let recipe = Recipe(entity: Recipe.entity(), insertInto: viewContext)

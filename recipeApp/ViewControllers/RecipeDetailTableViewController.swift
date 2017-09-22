@@ -21,7 +21,6 @@ class RecipeDetailTableViewController: UITableViewController {
     func setupViewControllerForNewRecipe() {
         self.title = "New Recipe"
         saveButton.isEnabled = false
-        
     }
     
     func setupViewControllerForEditRecipe() {

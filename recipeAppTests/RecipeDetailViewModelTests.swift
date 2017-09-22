@@ -100,4 +100,10 @@ class RecipeDetailViewModelTests: XCTestCase {
         }
     }
     
+    func testViewModelHasDefaultRowDataAndSectionNames() {
+        
+        
+        
+    }
+    
 }
