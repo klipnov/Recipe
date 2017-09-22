@@ -33,6 +33,7 @@ class RecipeTypes: NSObject, XMLParserDelegate {
     }
     
     private func loadFile() -> Data? {
+        
         let fileLoader = FileLoader()
 
         do {
@@ -60,6 +61,7 @@ class RecipeTypes: NSObject, XMLParserDelegate {
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
+        
         if element == "name" {
             name += string
         }

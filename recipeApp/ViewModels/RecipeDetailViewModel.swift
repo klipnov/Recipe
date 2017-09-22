@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import DTModelStorage
 
 class RecipeDetailViewModel {
     
     let viewContext = CoreDataManager.shared.persistentContainer.viewContext
     var recipe: Recipe?
     var sectionNames = ["", "Ingredients", "Steps"]
-    var rowData = [TableViewRowData]()
+    var rowData = MemoryStorage()
     
     init() {
         

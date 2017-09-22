@@ -1,14 +1,14 @@
 PODS:
-  - DTModelStorage (5.1.0):
-    - DTModelStorage/Core (= 5.1.0)
-  - DTModelStorage/Core (5.1.0)
+  - DTModelStorage (6.0.0-beta.1):
+    - DTModelStorage/Core (= 6.0.0-beta.1)
+  - DTModelStorage/Core (6.0.0-beta.1)
 
 DEPENDENCIES:
-  - DTModelStorage
+  - DTModelStorage (~> 6.0.0-beta.1)
 
 SPEC CHECKSUMS:
-  DTModelStorage: 47c56a07c59a5381902b0b10b835d1a83d0ea9f2
+  DTModelStorage: c6fabf43baedd0740f64d11a3a6e78f967b17eb5
 
-PODFILE CHECKSUM: b77fcbe909087a5fac7bbee5549c55e43257000f
+PODFILE CHECKSUM: 3cad77352f80eff9804c8ebfaeb1a4c76fbd1f63
 
 COCOAPODS: 1.2.1.rc.1
