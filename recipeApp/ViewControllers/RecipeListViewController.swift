@@ -35,6 +35,8 @@ class RecipeListViewController: UIViewController {
             return
         }
         
+        recipeDetailViewController.presenter = self
+        
         switch segue.identifier! {
         case "newRecipe":
             recipeDetailViewController.setupViewControllerForNewRecipe()
@@ -57,12 +59,12 @@ extension RecipeListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = { () -> UITableViewCell in
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell") else {
-                return UITableViewCell(style: .default, reuseIdentifier: "recipeCell")
-            }
-            return cell
-        }()
+        
+        let recipe = viewModel.recipes[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OneLabelCell") as! OneLabelTableViewCell
+        
+        cell.label.text = recipe.name
+        
         return cell
     }
     

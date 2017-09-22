@@ -13,14 +13,19 @@ class RecipeDetailTableViewController: UITableViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     let viewModel = RecipeDetailViewModel()
+    var presenter: RecipeListViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 80
+        tableView.keyboardDismissMode = .onDrag
     }
     
     func setupViewControllerForNewRecipe() {
         self.title = "New Recipe"
         saveButton.isEnabled = false
+        viewModel.createANewRecipe()
     }
     
     func setupViewControllerForEditRecipe() {
@@ -28,70 +33,73 @@ class RecipeDetailTableViewController: UITableViewController {
     }
     
     @IBAction func didTapCancelButton(_ sender: Any) {
+        viewModel.deleteRecipe()
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func didTapSaveButton(_ sender: Any) {
+        do {
+            try viewModel.saveRecipe()
+            dismiss(animated: true, completion: {
+                self.presenter?.viewModel.fetchRecipes()
+            })
+        } catch {
+            print("error: \(error)")
+        }
+    }
+    
     
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return viewModel.rowData.sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return viewModel.rowData.items(inSection: section)?.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.sectionNames[section]
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        return cell
+        
+        guard let rowData = viewModel.rowData.item(at: indexPath) as? TableViewRowData else {
+            return UITableViewCell()
+        }
+        
+        switch rowData.cellType {
+        case .textFieldCell:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldCell") as! TextFieldTableViewCell
+            
+            if rowData.data == nil {
+                cell.textField.placeholder = rowData.rowName
+            } else {
+                cell.textField.text = rowData.data
+            }
+            
+            return cell
+        case .twoLabelCell:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TwoLabelCell") as! TwoLabelTableViewCell
+            
+            cell.leftLabel.text = rowData.rowName
+            cell.rightLabel.text = rowData.data
+            
+            return cell
+        case .textViewCell:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TextViewCell") as! TextViewTableViewCell
+            
+            if let text = rowData.data {
+                cell.textView.text = text
+            }
+            
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -8,13 +8,15 @@
 
 import XCTest
 import CoreData
+import DTModelStorage
 @testable import recipeApp
 
 class RecipeDetailViewModelTests: XCTestCase {
     
+    let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+    
     func mockData() -> Recipe {
-        let managedObjectContext = CoreDataManager.shared.persistentContainer.viewContext
-        let recipe = Recipe(entity: Recipe.entity(), insertInto: managedObjectContext)
+        let recipe = Recipe(entity: Recipe.entity(), insertInto: viewContext)
         
         recipe.name = "Test Recipe"
         recipe.ingredients = "Cheese"
@@ -22,6 +24,25 @@ class RecipeDetailViewModelTests: XCTestCase {
         recipe.type = "Cheesy"
         
         return recipe
+    }
+    
+    override func tearDown() {
+        deleteAllRecipe()
+    }
+    
+    func deleteAllRecipe() {
+        let recipesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Recipe")
+        
+        do {
+            let fetchedRecipes = try viewContext.fetch(recipesFetch) as! [Recipe]
+            
+            for recipe in fetchedRecipes {
+                viewContext.delete(recipe)
+            }
+        } catch {
+            print("Error: \(error)")
+        }
+        
     }
     
     func testARecipeCanBeInjectedIntoViewModel() {
@@ -51,6 +72,8 @@ class RecipeDetailViewModelTests: XCTestCase {
     }
     
     func testRecipeDetailViewModelCanDeleteRecipe() {
+        
+        //delete all recipes
         
         let recipe = mockData()
         let viewModel = RecipeDetailViewModel()
@@ -102,8 +125,20 @@ class RecipeDetailViewModelTests: XCTestCase {
     
     func testViewModelHasDefaultRowDataAndSectionNames() {
         
+        let viewModel = RecipeDetailViewModel()
         
+        //rowData is not nil
+        XCTAssertNotNil(viewModel.rowData)
         
+        //rowData is a type of TableViewRowData
+        if let data = viewModel.rowData.item(at: IndexPath(row: 0, section: 0)) as? TableViewRowData {
+            XCTAssertTrue(true)
+            
+            //rowData has default data after initialize
+            XCTAssertEqual(data.rowName, "Recipe Name")
+        } else {
+            XCTAssertTrue(false)
+        }
     }
     
 }

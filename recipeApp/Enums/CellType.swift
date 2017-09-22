@@ -9,7 +9,7 @@
 import Foundation
 
 enum cellType {
-    case textfieldCell
+    case textFieldCell
     case twoLabelCell
     case pickerViewCell
     case textViewCell

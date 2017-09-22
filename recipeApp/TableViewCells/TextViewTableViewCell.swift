@@ -8,20 +8,13 @@
 
 import UIKit
 
-class TextViewTableViewCell: UITableViewCell {
+class TextViewTableViewCell: UITableViewCell, UITextViewDelegate {
 
     
     @IBOutlet weak var textView: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        textView.delegate = self
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

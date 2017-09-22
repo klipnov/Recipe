@@ -7,13 +7,34 @@
 //
 
 import XCTest
+import CoreData
 @testable import recipeApp
 
 class RecipeListViewModelTests: XCTestCase {
     
+    let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+    
+    override func tearDown() {
+        deleteAllRecipe()
+    }
+    
+    func deleteAllRecipe() {
+        let recipesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Recipe")
+        
+        do {
+            let fetchedRecipes = try viewContext.fetch(recipesFetch) as! [Recipe]
+            
+            for recipe in fetchedRecipes {
+                viewContext.delete(recipe)
+            }
+        } catch {
+            print("Error: \(error)")
+        }
+        
+    }
+    
     func mockData() {
-        let managedObjectContext = CoreDataManager.shared.persistentContainer.viewContext
-        let recipe = Recipe(entity: Recipe.entity(), insertInto: managedObjectContext)
+        let recipe = Recipe(entity: Recipe.entity(), insertInto: viewContext)
         
         recipe.name = "Test Recipe"
         recipe.ingredients = "Cheese"
