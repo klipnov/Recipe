@@ -10,4 +10,14 @@ import Foundation
 
 class RecipeDetailViewModel {
     
+    var recipes = [Recipe]()
+    
+    init() {
+        
+    }
+    
+    func fetchRecipe() {
+    
+    }
+    
 }

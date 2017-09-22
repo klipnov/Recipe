@@ -7,12 +7,23 @@
 //
 
 import Foundation
+import CoreData
 
 class RecipeListViewModel {
     
     var recipes = [Recipe]()
+    var recipeEntityName = "Recipe"
     
-    init() {
+    func fetchRecipes() {
+        let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+        let recipesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: recipeEntityName)
+        
+        do {
+            let fetchedRecipes = try viewContext.fetch(recipesFetch) as! [Recipe]
+            recipes = fetchedRecipes
+        } catch {
+            print("Error: \(error)")
+        }
         
     }
     
