@@ -20,6 +20,32 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IPr-51-wbH">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OneLabelCell" id="PFF-7o-c4Z" customClass="OneLabelTableViewCell" customModule="recipeApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PFF-7o-c4Z" id="cqX-Kr-0Oi">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1E-iD-zgE">
+                                                    <rect key="frame" x="16" y="11" width="105" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="f1E-iD-zgE" firstAttribute="leading" secondItem="cqX-Kr-0Oi" secondAttribute="leading" constant="16" id="YjT-1L-CCZ"/>
+                                                <constraint firstItem="f1E-iD-zgE" firstAttribute="top" secondItem="cqX-Kr-0Oi" secondAttribute="top" constant="11" id="mym-sQ-Tu8"/>
+                                                <constraint firstAttribute="bottom" secondItem="f1E-iD-zgE" secondAttribute="bottom" constant="11.5" id="ol7-cj-FcR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="label" destination="f1E-iD-zgE" id="2pa-ss-5kh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="eZZ-Y6-GsI"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="b1o-2f-Vse"/>
@@ -51,10 +77,10 @@
             </objects>
             <point key="canvasLocation" x="671" y="89"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Recipe Detail Table View Controller-->
         <scene sceneID="eca-X5-IlJ">
             <objects>
-                <tableViewController id="dMl-H5-r69" sceneMemberID="viewController">
+                <tableViewController id="dMl-H5-r69" customClass="RecipeDetailTableViewController" customModule="recipeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="ARp-5d-G2d">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -111,6 +137,10 @@
                                         <constraint firstAttribute="bottom" secondItem="iHo-fD-rhV" secondAttribute="bottom" constant="11.5" id="reC-Rg-C3e"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="leftLabel" destination="iHo-fD-rhV" id="XR1-kh-gOM"/>
+                                    <outlet property="rightLabel" destination="Wyb-2e-w5v" id="xG7-2p-pVX"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PickerCell" rowHeight="162" id="pHX-Z6-lue" customClass="PickerViewTableViewCell" customModule="recipeApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="143.5" width="375" height="162"/>
@@ -121,6 +151,10 @@
                                     <subviews>
                                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="inf-Lf-oNQ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="161.5"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="pHX-Z6-lue" id="leF-kh-09K"/>
+                                                <outlet property="delegate" destination="pHX-Z6-lue" id="Zz0-3x-JKv"/>
+                                            </connections>
                                         </pickerView>
                                     </subviews>
                                     <constraints>
@@ -130,6 +164,9 @@
                                         <constraint firstItem="inf-Lf-oNQ" firstAttribute="top" secondItem="Ixv-uh-aoL" secondAttribute="top" id="u2w-ZI-Bdv"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="pickerView" destination="inf-Lf-oNQ" id="qqS-Yj-0gR"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextViewCell" rowHeight="162" id="dXJ-Om-hMX" customClass="TextViewTableViewCell" customModule="recipeApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="305.5" width="375" height="162"/>
@@ -154,6 +191,9 @@
                                         <constraint firstAttribute="trailing" secondItem="Ofx-2j-H2x" secondAttribute="trailing" constant="16" id="yZR-G6-qLW"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="textView" destination="Ofx-2j-H2x" id="360-7e-sko"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -206,6 +246,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="eqh-Eb-chi"/>
+        <segue reference="Gp3-Ci-YIu"/>
     </inferredMetricsTieBreakers>
 </document>

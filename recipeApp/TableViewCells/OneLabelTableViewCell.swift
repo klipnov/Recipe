@@ -1,5 +1,5 @@
 //
-//  TextViewTableViewCell.swift
+//  OneLabelTableViewCell.swift
 //  recipeApp
 //
 //  Created by Shah Qays on 22/09/2017.
@@ -8,10 +8,9 @@
 
 import UIKit
 
-class TextViewTableViewCell: UITableViewCell {
+class OneLabelTableViewCell: UITableViewCell {
 
-    
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var label: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

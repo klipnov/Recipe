@@ -26,6 +26,8 @@
 		E6A882991F74B34F0091E1EC /* TwoLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A882981F74B34F0091E1EC /* TwoLabelTableViewCell.swift */; };
 		E6A8829B1F74B70C0091E1EC /* PickerViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A8829A1F74B70C0091E1EC /* PickerViewTableViewCell.swift */; };
 		E6A8829D1F74B7500091E1EC /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A8829C1F74B7500091E1EC /* TextViewTableViewCell.swift */; };
+		E6A882A11F74B8CD0091E1EC /* OneLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A882A01F74B8CD0091E1EC /* OneLabelTableViewCell.swift */; };
+		E6A882A51F74BAED0091E1EC /* RecipeDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A882A41F74BAED0091E1EC /* RecipeDetailTableViewController.swift */; };
 		E6E26B6F1F742A8B008A969A /* RecipeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E26B6E1F742A8B008A969A /* RecipeListViewModel.swift */; };
 		E6E26B731F742B84008A969A /* RecipeListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E26B721F742B84008A969A /* RecipeListViewModelTests.swift */; };
 /* End PBXBuildFile section */
@@ -79,6 +81,8 @@
 		E6A882981F74B34F0091E1EC /* TwoLabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabelTableViewCell.swift; sourceTree = "<group>"; };
 		E6A8829A1F74B70C0091E1EC /* PickerViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewTableViewCell.swift; sourceTree = "<group>"; };
 		E6A8829C1F74B7500091E1EC /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
+		E6A882A01F74B8CD0091E1EC /* OneLabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneLabelTableViewCell.swift; sourceTree = "<group>"; };
+		E6A882A41F74BAED0091E1EC /* RecipeDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailTableViewController.swift; sourceTree = "<group>"; };
 		E6E26B6E1F742A8B008A969A /* RecipeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewModel.swift; sourceTree = "<group>"; };
 		E6E26B721F742B84008A969A /* RecipeListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -231,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				E653263C1F73E79700BC33ED /* RecipeListViewController.swift */,
+				E6A882A41F74BAED0091E1EC /* RecipeDetailTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 				E6A882981F74B34F0091E1EC /* TwoLabelTableViewCell.swift */,
 				E6A8829A1F74B70C0091E1EC /* PickerViewTableViewCell.swift */,
 				E6A8829C1F74B7500091E1EC /* TextViewTableViewCell.swift */,
+				E6A882A01F74B8CD0091E1EC /* OneLabelTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -551,9 +557,11 @@
 				E6A882991F74B34F0091E1EC /* TwoLabelTableViewCell.swift in Sources */,
 				E653267C1F740F8400BC33ED /* RecipeTypes.swift in Sources */,
 				E6A882971F74B33B0091E1EC /* TextFieldTableViewCell.swift in Sources */,
+				E6A882A51F74BAED0091E1EC /* RecipeDetailTableViewController.swift in Sources */,
 				E6A8829B1F74B70C0091E1EC /* PickerViewTableViewCell.swift in Sources */,
 				E653263D1F73E79700BC33ED /* RecipeListViewController.swift in Sources */,
 				E653263B1F73E79700BC33ED /* AppDelegate.swift in Sources */,
+				E6A882A11F74B8CD0091E1EC /* OneLabelTableViewCell.swift in Sources */,
 				E6A8829D1F74B7500091E1EC /* TextViewTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,9 @@ import UIKit
 
 class TwoLabelTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var leftLabel: UILabel!
+    @IBOutlet weak var rightLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
