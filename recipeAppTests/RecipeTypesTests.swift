@@ -14,13 +14,13 @@ class RecipeTypesTests: XCTestCase {
     func testRecipeTypesHaveNames() {
         let recipeTypes = RecipeTypes()
         
-        XCTAssertTrue((recipeTypes.names as Any) is [String])
+        XCTAssertTrue((recipeTypes.types as Any) is [String])
     }
     
     func testRecipeTypesCanLoadDataFromXMLFileAndInsertDataIntoNames() {
         let recipeTypes = RecipeTypes()
         
-       XCTAssertTrue(recipeTypes.names[0] == "Vegetarian")
+       XCTAssertTrue(recipeTypes.types[0] == "Vegetarian")
     }
     
 }

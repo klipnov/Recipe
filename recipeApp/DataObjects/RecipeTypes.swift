@@ -10,7 +10,7 @@ import Foundation
 
 class RecipeTypes: NSObject, XMLParserDelegate {
     
-    var names = [String]()
+    var types = [String]()
     
     var element = String()
     var name = String()
@@ -56,7 +56,7 @@ class RecipeTypes: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
         if elementName == "name" {
-            names.append(name)
+            types.append(name)
         }
     }
     

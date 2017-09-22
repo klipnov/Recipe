@@ -6,7 +6,7 @@
 //  Copyright © 2017 Shah Qays. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import DTModelStorage
 
 class RecipeDetailViewModel {
@@ -15,6 +15,8 @@ class RecipeDetailViewModel {
     var recipe: Recipe?
     var sectionNames = ["", "Ingredients", "Steps"]
     var rowData = MemoryStorage()
+    var didTogglePickerView: ((Bool, IndexPath)->Void)?
+    var didSelectPickerString: ((IndexPath)->Void)?
     
     init() {
 
@@ -29,24 +31,71 @@ class RecipeDetailViewModel {
                                           cellType: .twoLabelCell)
         
         rowData.addItems([recipeName,
-                          recipeType], toSection: 0)
+                          recipeType],
+                         toSection: 0)
         
-        let ingredientsString = recipe?.ingredients ?? "List ingredients here."
-        let recipeIngredients = TableViewRowData(rowName: "Recipe Ingredients",
+        let ingredientsString = recipe?.ingredients
+        let recipeIngredients = TableViewRowData(rowName: "List ingredients here.",
                                                  data: ingredientsString,
                                                  cellType: .textViewCell)
         
         rowData.addItems([recipeIngredients],
                          toSection: 1)
         
-        let stepsString = recipe?.steps ?? "List steps here."
-        let recipeSteps = TableViewRowData(rowName: "Recipe Steps",
+        let stepsString = recipe?.steps
+        let recipeSteps = TableViewRowData(rowName: "List steps here.",
                                            data: stepsString,
                                            cellType: .textViewCell)
         
         rowData.addItems([recipeSteps],
                          toSection: 2)
         
+    }
+    
+    func togglePickerRow() {
+        
+        if let item = rowData.item(at: IndexPath(row: 2, section: 0)) as? TableViewRowData {
+            do {
+                try rowData.removeItem(item)
+                didTogglePickerView?(false, IndexPath(row: 2, section: 0))
+            } catch {
+                print("error: \(error)")
+                return
+            }
+        } else {
+            let recipeType = TableViewRowData(rowName: "Recipe Type",
+                                              data: recipe?.type,
+                                              cellType: .recipeTypePickerViewCell)
+            
+            rowData.addItem(recipeType, toSection: 0)
+            didTogglePickerView?(true, IndexPath(row: 2, section: 0))
+        }        
+    }
+    
+    func updateRecipeType(string: String) {
+        
+        if let currentRecipeTypeRow = rowData.item(at: IndexPath(row: 1, section: 0)) as? TableViewRowData {
+            let newRecipeTypeRow = TableViewRowData(rowName: "Recipe Type", data: string, cellType: .twoLabelCell)
+            do {
+                try rowData.replaceItem(currentRecipeTypeRow, with: newRecipeTypeRow)
+                didSelectPickerString?(IndexPath(row: 1, section: 0))
+            } catch {
+                print("Error: \(error)")
+            }
+            
+        } else {
+            
+        }
+    }
+    
+    func validateRecipe() throws {
+        guard let recipeName = recipe?.name, recipeName.count > 1 else {
+            throw RecipeSaveError.nameIsLessThan2Characters
+        }
+        
+        guard recipe?.type != nil else {
+            throw RecipeSaveError.typeIsEmpty
+        }
     }
     
     //Mark: - Create, save and delete
@@ -59,14 +108,10 @@ class RecipeDetailViewModel {
     
     func saveRecipe() throws {
         
-        //check for recipe name
-        guard let recipeName = recipe?.name, recipeName.count > 1 else {
-                throw RecipeSaveError.nameIsLessThan2Characters
-        }
-        
-        //check for recipe type
-        guard recipe?.type != nil else {
-                throw RecipeSaveError.typeIsEmpty
+        do {
+            try validateRecipe()
+        } catch {
+            throw error
         }
         
         do {

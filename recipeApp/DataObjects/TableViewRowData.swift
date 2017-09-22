@@ -8,8 +8,15 @@
 
 import Foundation
 
-struct TableViewRowData {
+struct TableViewRowData: Equatable {
     let rowName: String
     let data: String?
     let cellType: cellType
+    
+    static func ==(lhs: TableViewRowData, rhs: TableViewRowData) -> Bool {
+        return
+            lhs.rowName == rhs.rowName &&
+            lhs.data == rhs.data &&
+            lhs.cellType == rhs.cellType
+    }
 }

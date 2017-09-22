@@ -45,6 +45,19 @@ class RecipeDetailViewModelTests: XCTestCase {
         
     }
     
+    func fetchAllRecipe() {
+        let recipesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Recipe")
+        
+        do {
+            let fetchedRecipes = try viewContext.fetch(recipesFetch) as! [Recipe]
+            
+            print(fetchedRecipes)
+        } catch {
+            print("Error: \(error)")
+        }
+
+    }
+    
     func testARecipeCanBeInjectedIntoViewModel() {
         
         let viewModel = RecipeDetailViewModel()
@@ -110,7 +123,7 @@ class RecipeDetailViewModelTests: XCTestCase {
         //create a new recipe
         viewModel.createANewRecipe()
         
-        viewModel.recipe?.name = ""
+        viewModel.recipe?.name = "Test"
         viewModel.recipe?.type = nil
         
         //check for recipe name

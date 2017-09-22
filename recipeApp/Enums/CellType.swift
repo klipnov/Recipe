@@ -11,7 +11,7 @@ import Foundation
 enum cellType {
     case textFieldCell
     case twoLabelCell
-    case pickerViewCell
+    case recipeTypePickerViewCell
     case textViewCell
     case oneLabelCell
 }

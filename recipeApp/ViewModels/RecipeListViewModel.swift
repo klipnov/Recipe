@@ -14,9 +14,9 @@ class RecipeListViewModel {
     var recipes = [Recipe]()
     var recipeEntityName = "Recipe"
     var didUpdateRecipes: (()->Void)?
+    let viewContext = CoreDataManager.shared.persistentContainer.viewContext
     
     func fetchRecipes() {
-        let viewContext = CoreDataManager.shared.persistentContainer.viewContext
         let recipesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: recipeEntityName)
         
         do {

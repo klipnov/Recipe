@@ -27,23 +27,26 @@ class RecipeListViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        guard let navigationViewController = segue.destination as? UINavigationController else {
-            return
-        }
-        
-        guard let recipeDetailViewController = navigationViewController.viewControllers.first as? RecipeDetailTableViewController else {
-            return
-        }
-        
-        recipeDetailViewController.presenter = self
-        
-        switch segue.identifier! {
-        case "newRecipe":
+        if segue.identifier == "editRecipe" {
+            
+            let recipeDetailTableVC = segue.destination as! RecipeDetailTableViewController
+            
+            recipeDetailTableVC.setupViewControllerForEditRecipe()
+            recipeDetailTableVC.presenter = self
+            
+        } else if segue.identifier == "newRecipe" {
+            
+            guard let navigationViewController = segue.destination as? UINavigationController else {
+                return
+            }
+            
+            guard let recipeDetailViewController = navigationViewController.viewControllers.first as? RecipeDetailTableViewController else {
+                return
+            }
+
             recipeDetailViewController.setupViewControllerForNewRecipe()
-        case "editRecipe":
-            recipeDetailViewController.setupViewControllerForEditRecipe()
-        default:
-            break
+            recipeDetailViewController.presenter = self
+
         }
     }
 }
@@ -51,7 +54,7 @@ class RecipeListViewController: UIViewController {
 extension RecipeListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,6 +69,16 @@ extension RecipeListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.label.text = recipe.name
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let recipe = viewModel.recipes[indexPath.row]
+        
+        performSegue(withIdentifier: "editRecipe", sender: recipe)
+        
     }
     
 }

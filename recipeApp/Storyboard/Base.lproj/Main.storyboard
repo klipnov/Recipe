@@ -68,13 +68,13 @@
                     <navigationItem key="navigationItem" title="Recipe App" id="m6g-lM-Jvk">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2Vt-rI-vM1">
                             <connections>
-                                <segue destination="XPf-uy-tfa" kind="presentation" identifier="newRecipe" id="eqh-Eb-chi"/>
+                                <segue destination="XPf-uy-tfa" kind="presentation" identifier="newRecipe" id="r3D-bm-nvC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="IPr-51-wbH" id="4JG-rv-S4u"/>
-                        <segue destination="XPf-uy-tfa" kind="show" identifier="editRecipe" id="Gp3-Ci-YIu"/>
+                        <segue destination="dMl-H5-r69" kind="show" identifier="editRecipe" id="GVF-3m-ZWt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -100,7 +100,7 @@
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Recipe Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uvG-Xm-WK6">
                                             <rect key="frame" x="16" y="8" width="343" height="33.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="33.5" id="MX2-so-foK"/>
+                                                <constraint firstAttribute="height" priority="999" constant="33.5" id="Omo-Xv-Q3l"/>
                                             </constraints>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -128,7 +128,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHo-fD-rhV">
                                             <rect key="frame" x="16" y="8" width="98" height="33.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="33.5" id="bYb-aZ-ouM"/>
+                                                <constraint firstAttribute="height" priority="999" constant="33.5" id="XZY-5B-kak"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -137,7 +137,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wyb-2e-w5v">
                                             <rect key="frame" x="319.5" y="8" width="39.5" height="33.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="33.5" id="aPt-oP-i1Q"/>
+                                                <constraint firstAttribute="height" priority="999" constant="33.5" id="aPt-oP-i1Q"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -158,7 +158,7 @@
                                     <outlet property="rightLabel" destination="Wyb-2e-w5v" id="xG7-2p-pVX"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PickerCell" rowHeight="162" id="pHX-Z6-lue" customClass="PickerViewTableViewCell" customModule="recipeApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeTypePickerCell" rowHeight="162" id="pHX-Z6-lue" customClass="RecipeTypesPickerViewTableViewCell" customModule="recipeApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="155.5" width="375" height="162"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pHX-Z6-lue" id="Ixv-uh-aoL">
@@ -195,7 +195,7 @@
                                             <rect key="frame" x="16" y="8" width="343" height="146"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="146" id="JPd-I8-2oU"/>
+                                                <constraint firstAttribute="height" priority="999" constant="146" id="JPd-I8-2oU"/>
                                             </constraints>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -224,7 +224,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Recipe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyJ-Xg-6gj">
                                             <rect key="frame" x="16" y="11" width="343" height="27"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="27" id="LOh-dw-q4j"/>
+                                                <constraint firstAttribute="height" priority="999" constant="27" id="LOh-dw-q4j"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <color key="textColor" red="0.85882352939999995" green="0.1960784314" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -283,7 +283,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aC7-AP-lHm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2005.5999999999999" y="87.706146926536732"/>
+            <point key="canvasLocation" x="2292" y="89"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hTx-8m-cSI">
@@ -319,10 +319,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WwJ-lk-kZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1339.2" y="88.15592203898052"/>
+            <point key="canvasLocation" x="1447" y="89"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="eqh-Eb-chi"/>
+        <segue reference="GVF-3m-ZWt"/>
     </inferredMetricsTieBreakers>
 </document>
