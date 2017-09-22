@@ -17,6 +17,32 @@ class RecipeListViewController: UIViewController {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "recipeCell")
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        viewModel.didUpdateRecipes = {
+            self.tableView.reloadData()
+        }
+        
+        viewModel.fetchRecipes()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let navigationViewController = segue.destination as? UINavigationController else {
+            return
+        }
+        
+        guard let recipeDetailViewController = navigationViewController.viewControllers.first as? RecipeDetailTableViewController else {
+            return
+        }
+        
+        switch segue.identifier! {
+        case "newRecipe":
+            recipeDetailViewController.setupViewControllerForNewRecipe()
+        case "editRecipe":
+            recipeDetailViewController.setupViewControllerForEditRecipe()
+        default:
+            break
+        }
     }
 }
 

@@ -10,9 +10,28 @@ import UIKit
 
 class RecipeDetailTableViewController: UITableViewController {
 
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    let viewModel = RecipeDetailViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    func setupViewControllerForNewRecipe() {
+        self.title = "New Recipe"
+        saveButton.isEnabled = false
+        
+    }
+    
+    func setupViewControllerForEditRecipe() {
+        self.title = "Edit Recipe"
+    }
+    
+    @IBAction func didTapCancelButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 
     // MARK: - Table view data source
 

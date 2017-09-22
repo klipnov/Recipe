@@ -13,6 +13,7 @@ class RecipeListViewModel {
     
     var recipes = [Recipe]()
     var recipeEntityName = "Recipe"
+    var didUpdateRecipes: (()->Void)?
     
     func fetchRecipes() {
         let viewContext = CoreDataManager.shared.persistentContainer.viewContext
@@ -21,6 +22,7 @@ class RecipeListViewModel {
         do {
             let fetchedRecipes = try viewContext.fetch(recipesFetch) as! [Recipe]
             recipes = fetchedRecipes
+            didUpdateRecipes?()
         } catch {
             print("Error: \(error)")
         }
