@@ -80,9 +80,7 @@ class RecipeDetailTableViewController: UITableViewController, AlertDisplaying {
         do {
             try viewModel.validateRecipe()
             saveButton.isEnabled = true
-        } catch {
-            print("Error: \(error)")
-        }
+        } catch {}
     }
     
 
