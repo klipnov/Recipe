@@ -1,12 +1,14 @@
 PODS:
-  - AEXML (4.1.0)
+  - DTModelStorage (6.0.0-beta.1):
+    - DTModelStorage/Core (= 6.0.0-beta.1)
+  - DTModelStorage/Core (6.0.0-beta.1)
 
 DEPENDENCIES:
-  - AEXML
+  - DTModelStorage (~> 6.0.0-beta.1)
 
 SPEC CHECKSUMS:
-  AEXML: 647fbb051280f3fb38a1a7caa62b0344055a851c
+  DTModelStorage: c6fabf43baedd0740f64d11a3a6e78f967b17eb5
 
-PODFILE CHECKSUM: 478d92666ab329f6b292ddffbc710be473f1bbd0
+PODFILE CHECKSUM: 3cad77352f80eff9804c8ebfaeb1a4c76fbd1f63
 
 COCOAPODS: 1.2.1.rc.1
