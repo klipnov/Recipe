@@ -185,6 +185,7 @@
 		E65326391F73E79700BC33ED /* recipeApp */ = {
 			isa = PBXGroup;
 			children = (
+				E66129281F761C8800DF4654 /* UIObjects */,
 				E6B1992D1F7543D8003D4430 /* Protocols */,
 				E6A882AE1F75189F0091E1EC /* Enums */,
 				E65326781F740E5100BC33ED /* DataObjects */,
@@ -272,9 +273,16 @@
 			children = (
 				E653267B1F740F8400BC33ED /* RecipeTypes.swift */,
 				E6A882B41F751A570091E1EC /* TableViewRowData.swift */,
-				E67E5D601F760F7200F49276 /* RecipeTypeFilterActionSheet.swift */,
 			);
 			path = DataObjects;
+			sourceTree = "<group>";
+		};
+		E66129281F761C8800DF4654 /* UIObjects */ = {
+			isa = PBXGroup;
+			children = (
+				E67E5D601F760F7200F49276 /* RecipeTypeFilterActionSheet.swift */,
+			);
+			path = UIObjects;
 			sourceTree = "<group>";
 		};
 		E6A882951F74B2FF0091E1EC /* TableViewCells */ = {

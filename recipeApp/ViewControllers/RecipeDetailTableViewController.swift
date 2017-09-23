@@ -61,7 +61,14 @@ class RecipeDetailTableViewController: UITableViewController, AlertDisplaying {
             if self.title == "Edit Recipe" {
                 navigationController?.popViewController(animated: true)
             } else {
-                dismiss(animated: true, completion:nil)
+                dismiss(animated: true) {
+                    let showDeleteTip = UserDefaults().bool(forKey: "ShowDeleteTip")
+
+                    if !showDeleteTip {
+                        UserDefaults().set(true, forKey: "ShowDeleteTip")
+                        self.presenter?.showTip()
+                    }
+                }
             }
         } catch {
             print("error: \(error)")

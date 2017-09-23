@@ -68,6 +68,10 @@ class RecipeListViewController: UIViewController, AlertDisplaying {
         recipeFilter.showRecipeTypesFilter(viewController: self)
     }
     
+    func showTip() {
+        showAlert(title: "Tip", message: "You can delete recipes by swiping right to left on a recipe")
+    }
+    
 }
 
 extension RecipeListViewController: UITableViewDelegate, UITableViewDataSource {

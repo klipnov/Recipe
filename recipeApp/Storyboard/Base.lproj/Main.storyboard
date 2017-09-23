@@ -124,6 +124,9 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="textfieldDidChangeText:" destination="eMi-LT-Ort" eventType="editingChanged" id="px8-Eq-iJZ"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>

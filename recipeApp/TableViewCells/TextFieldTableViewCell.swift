@@ -18,7 +18,8 @@ class TextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         textField.delegate = self
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    @IBAction func textfieldDidChangeText(_ sender: Any) {
+        let textField = sender as! UITextField
         didUpdateTextfield?(textField.text)
     }
     
