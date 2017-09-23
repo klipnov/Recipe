@@ -125,7 +125,7 @@ extension RecipeListViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             let recipe = viewModel.recipes[indexPath.row]
             showConfirmationAlert(title: "Delete \(recipe.name!)?", message: "Recipe deletion cannot be undone", confirmHandler: {
-                    self.viewModel.deleteRecipe(recipe: recipe)
+                self.viewModel.deleteRecipe(recipe: recipe, filterBy: self.selectedFilter)
             })
         }
     }

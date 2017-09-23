@@ -14,7 +14,7 @@ class RecipeTypes: NSObject, XMLParserDelegate {
     
     var element = String()
     var name = String()
-    let defaultRecipeXMLFile = "recipetypes.xml"
+    let defaultRecipeXMLFile = "qaysRecipeTypes.xml"
     
     override init() {
         super.init()

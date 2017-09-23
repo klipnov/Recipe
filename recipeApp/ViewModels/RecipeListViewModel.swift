@@ -32,14 +32,14 @@ class RecipeListViewModel {
         
     }
     
-    func deleteRecipe(recipe: Recipe) {
+    func deleteRecipe(recipe: Recipe, filterBy: String) {
         viewContext.delete(recipe)
         do {
             try viewContext.save()
         } catch {
             print("Error:\(error)")
         }
-        fetchRecipes(filterBy: "All")
+        fetchRecipes(filterBy: filterBy)
     }
 
     

@@ -10,6 +10,7 @@
 		70A1341FF795D3EF0ACF17CE /* Pods_recipeAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C294C46364C8BD4CDDB6701 /* Pods_recipeAppTests.framework */; };
 		7FE90D46FB9B7286A56D3E9D /* Pods_recipeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD9FC4E18FBCFE132A6C280 /* Pods_recipeApp.framework */; };
 		C8F2705120BA583CF4BD371B /* Pods_recipeAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F29E9118E77E21876F99F14 /* Pods_recipeAppUITests.framework */; };
+		E64B4E8D1F762832000A93E7 /* qaysRecipeTypes.xml in Resources */ = {isa = PBXBuildFile; fileRef = E64B4E8C1F762832000A93E7 /* qaysRecipeTypes.xml */; };
 		E653263B1F73E79700BC33ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E653263A1F73E79700BC33ED /* AppDelegate.swift */; };
 		E653263D1F73E79700BC33ED /* RecipeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E653263C1F73E79700BC33ED /* RecipeListViewController.swift */; };
 		E65326401F73E79700BC33ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E653263E1F73E79700BC33ED /* Main.storyboard */; };
@@ -70,6 +71,7 @@
 		B9C2FB64D228253BE3D45639 /* Pods-recipeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recipeApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-recipeApp/Pods-recipeApp.release.xcconfig"; sourceTree = "<group>"; };
 		BBD9FC4E18FBCFE132A6C280 /* Pods_recipeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_recipeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF12315181F83DAAE867F30 /* Pods-recipeAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recipeAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-recipeAppTests/Pods-recipeAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		E64B4E8C1F762832000A93E7 /* qaysRecipeTypes.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = qaysRecipeTypes.xml; sourceTree = "<group>"; };
 		E65326371F73E79700BC33ED /* recipeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = recipeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E653263A1F73E79700BC33ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E653263C1F73E79700BC33ED /* RecipeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				E65326701F73EB9600BC33ED /* recipetypes.xml */,
+				E64B4E8C1F762832000A93E7 /* qaysRecipeTypes.xml */,
 			);
 			path = XML;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 			files = (
 				E65326771F740B8D00BC33ED /* recipetypes.xml in Resources */,
 				E65326481F73E79700BC33ED /* LaunchScreen.storyboard in Resources */,
+				E64B4E8D1F762832000A93E7 /* qaysRecipeTypes.xml in Resources */,
 				E65326451F73E79700BC33ED /* Assets.xcassets in Resources */,
 				E65326401F73E79700BC33ED /* Main.storyboard in Resources */,
 			);
