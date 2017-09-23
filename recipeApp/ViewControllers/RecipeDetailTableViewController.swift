@@ -39,26 +39,30 @@ class RecipeDetailTableViewController: UITableViewController, AlertDisplaying {
     func setupViewControllerForNewRecipe() {
         self.title = "New Recipe"
         saveButton.isEnabled = false
-        viewModel.createANewRecipe()
+        viewModel.createNewRecipe()
     }
     
     func setupViewControllerForEditRecipe() {
         self.title = "Edit Recipe"
         self.navigationItem.leftBarButtonItem = nil
+        viewModel.editRecipe()
     }
     
     @IBAction func didTapCancelButton(_ sender: Any) {
-        
         viewModel.deleteRecipe()
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func didTapSaveButton(_ sender: Any) {
+        view.endEditing(true)
         do {
             try viewModel.saveRecipe()
-            self.presenter?.viewModel.fetchRecipes()
-
-            dismiss(animated: true, completion:nil)
+            self.presenter?.viewModel.fetchRecipes(filterBy: "All")
+            if self.title == "Edit Recipe" {
+                navigationController?.popViewController(animated: true)
+            } else {
+                dismiss(animated: true, completion:nil)
+            }
         } catch {
             print("error: \(error)")
             showAlert(title: "Unable To Save Recipe", message: "Please insert a recipe name with atleast 2 characters and choose a recipe type")
@@ -101,7 +105,7 @@ class RecipeDetailTableViewController: UITableViewController, AlertDisplaying {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldCell") as! TextFieldTableViewCell
             
             if rowData.data == nil {
-                cell.textField.placeholder = rowData.rowName
+                cell.textField.placeholder = rowData.rowName.rawValue
             } else {
                 cell.textField.text = rowData.data
             }
@@ -119,15 +123,25 @@ class RecipeDetailTableViewController: UITableViewController, AlertDisplaying {
         case .twoLabelCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TwoLabelCell") as! TwoLabelTableViewCell
             
-            cell.leftLabel.text = rowData.rowName
+            cell.leftLabel.text = rowData.rowName.rawValue
             cell.rightLabel.text = rowData.data ?? "Choose Type"
             
             return cell
         case .textViewCell:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TextViewCell") as! TextViewTableViewCell
             
+            cell.updateCellPlaceholder(string: rowData.rowName.rawValue)
+            
             if let text = rowData.data {
                 cell.textView.text = text
+            }
+            
+            cell.didEndEditing = { (string) in
+                if rowData.rowName == .recipeIngredients {
+                    self.viewModel.recipe?.ingredients = string
+                } else {
+                    self.viewModel.recipe?.steps = string
+                }
             }
             
             return cell
@@ -140,6 +154,10 @@ class RecipeDetailTableViewController: UITableViewController, AlertDisplaying {
                 self.enableSaveButton()
             }
             
+            return cell
+        case .deleteCell:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DeleteCell") as! DeleteTableViewCell
+            cell.label.text = rowData.rowName.rawValue
             return cell
         default:
             return UITableViewCell()
@@ -154,8 +172,14 @@ class RecipeDetailTableViewController: UITableViewController, AlertDisplaying {
         }
         
         switch rowData.rowName {
-        case "Recipe Type":
+        case .recipeType:
             viewModel.togglePickerRow()
+        case .deleteRecipe:
+            showConfirmationAlert(title: "Delete \(viewModel.recipe!.name!)?", message: "Recipe deletion cannot be undone", confirmHandler: {
+                self.viewModel.deleteRecipe()
+                self.presenter?.viewModel.fetchRecipes(filterBy: "All")
+                self.navigationController?.popViewController(animated: true)
+            })
         default:
             break
         }

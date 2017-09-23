@@ -9,7 +9,7 @@
 import Foundation
 
 struct TableViewRowData: Equatable {
-    let rowName: String
+    let rowName: RecipeRowNames
     let data: String?
     let cellType: cellType
     

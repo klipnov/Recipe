@@ -22,11 +22,11 @@ class RecipeDetailViewModel {
 
     }
     
-    func initializeRowData() {
-        let recipeName = TableViewRowData(rowName: "Recipe Name",
+    func initializeRowData(newRecipe: Bool) {
+        let recipeName = TableViewRowData(rowName: .recipeName,
                                           data: recipe?.name ?? nil,
                                           cellType: .textFieldCell)
-        let recipeType = TableViewRowData(rowName: "Recipe Type",
+        let recipeType = TableViewRowData(rowName: .recipeType,
                                           data: recipe?.type ?? nil,
                                           cellType: .twoLabelCell)
         
@@ -35,7 +35,7 @@ class RecipeDetailViewModel {
                          toSection: 0)
         
         let ingredientsString = recipe?.ingredients
-        let recipeIngredients = TableViewRowData(rowName: "List ingredients here.",
+        let recipeIngredients = TableViewRowData(rowName: .recipeIngredients,
                                                  data: ingredientsString,
                                                  cellType: .textViewCell)
         
@@ -43,12 +43,22 @@ class RecipeDetailViewModel {
                          toSection: 1)
         
         let stepsString = recipe?.steps
-        let recipeSteps = TableViewRowData(rowName: "List steps here.",
+        let recipeSteps = TableViewRowData(rowName: .recipeSteps,
                                            data: stepsString,
                                            cellType: .textViewCell)
         
         rowData.addItems([recipeSteps],
                          toSection: 2)
+        
+        if !newRecipe {
+            sectionNames.append("Delete Recipe")
+            
+            let deleteRecipe = TableViewRowData(rowName: .deleteRecipe,
+                                                data: nil,
+                                                cellType: .deleteCell)
+            rowData.addItem(deleteRecipe,
+                            toSection: 3)
+        }
         
     }
     
@@ -63,7 +73,7 @@ class RecipeDetailViewModel {
                 return
             }
         } else {
-            let recipeType = TableViewRowData(rowName: "Recipe Type",
+            let recipeType = TableViewRowData(rowName: .recipeType,
                                               data: recipe?.type,
                                               cellType: .recipeTypePickerViewCell)
             
@@ -75,7 +85,7 @@ class RecipeDetailViewModel {
     func updateRecipeType(string: String) {
         
         if let currentRecipeTypeRow = rowData.item(at: IndexPath(row: 1, section: 0)) as? TableViewRowData {
-            let newRecipeTypeRow = TableViewRowData(rowName: "Recipe Type", data: string, cellType: .twoLabelCell)
+            let newRecipeTypeRow = TableViewRowData(rowName: .recipeType, data: string, cellType: .twoLabelCell)
             do {
                 try rowData.replaceItem(currentRecipeTypeRow, with: newRecipeTypeRow)
                 didSelectPickerString?(IndexPath(row: 1, section: 0))
@@ -83,9 +93,8 @@ class RecipeDetailViewModel {
                 print("Error: \(error)")
             }
             
-        } else {
-            
         }
+        
     }
     
     func validateRecipe() throws {
@@ -98,12 +107,16 @@ class RecipeDetailViewModel {
         }
     }
     
-    //Mark: - Create, save and delete
+    //Mark: - Create, Edit, save and delete
     
-    func createANewRecipe() {
-        initializeRowData()
+    func createNewRecipe() {
+        initializeRowData(newRecipe: true)
         let recipe = Recipe(entity: Recipe.entity(), insertInto: viewContext)
         self.recipe = recipe
+    }
+    
+    func editRecipe() {
+        initializeRowData(newRecipe: false)
     }
     
     func saveRecipe() throws {
@@ -129,6 +142,12 @@ class RecipeDetailViewModel {
         
         viewContext.delete(recipe)
         self.recipe = nil
+        
+        do {
+            try viewContext.save()
+        } catch {
+            print(RecipeSaveError.saveError(error.localizedDescription))
+        }
     }
     
 }

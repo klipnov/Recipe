@@ -8,21 +8,30 @@
 
 import UIKit
 
-class RecipeListViewController: UIViewController {
+class RecipeListViewController: UIViewController, AlertDisplaying {
 
     @IBOutlet weak var tableView: UITableView!
     let viewModel = RecipeListViewModel()
+    @IBOutlet var noResult: UILabel!
+    let recipeFilter = RecipeTypeFilterActionSheet()
+    var selectedFilter = "All"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "recipeCell")
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.backgroundView = noResult
         
         viewModel.didUpdateRecipes = {
             self.tableView.reloadData()
         }
         
-        viewModel.fetchRecipes()
+        recipeFilter.didUpdateFilter = { (string) in
+            self.selectedFilter = string
+            self.viewModel.fetchRecipes(filterBy: string)
+        }
+        
+        viewModel.fetchRecipes(filterBy: selectedFilter)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -31,6 +40,11 @@ class RecipeListViewController: UIViewController {
             
             let recipeDetailTableVC = segue.destination as! RecipeDetailTableViewController
             
+            guard let recipe = sender as? Recipe else {
+                return
+            }
+            
+            recipeDetailTableVC.viewModel.recipe = recipe
             recipeDetailTableVC.setupViewControllerForEditRecipe()
             recipeDetailTableVC.presenter = self
             
@@ -49,6 +63,11 @@ class RecipeListViewController: UIViewController {
 
         }
     }
+    
+    @IBAction func didTapFilterButton(_ sender: Any) {
+        recipeFilter.showRecipeTypesFilter(viewController: self)
+    }
+    
 }
 
 extension RecipeListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -58,7 +77,21 @@ extension RecipeListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        let count = viewModel.recipes.count
+        
+        noResult.isHidden = count != 0
+        
         return viewModel.recipes.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if selectedFilter == "All" {
+            return ""
+        } else {
+            return "Recipes are filtered by \(selectedFilter) type"
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -79,6 +112,19 @@ extension RecipeListViewController: UITableViewDelegate, UITableViewDataSource {
         
         performSegue(withIdentifier: "editRecipe", sender: recipe)
         
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let recipe = viewModel.recipes[indexPath.row]
+            showConfirmationAlert(title: "Delete \(recipe.name!)?", message: "Recipe deletion cannot be undone", confirmHandler: {
+                    self.viewModel.deleteRecipe(recipe: recipe)
+            })
+        }
     }
     
 }

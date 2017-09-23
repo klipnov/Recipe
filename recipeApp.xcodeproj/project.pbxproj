@@ -22,6 +22,9 @@
 		E65326771F740B8D00BC33ED /* recipetypes.xml in Resources */ = {isa = PBXBuildFile; fileRef = E65326701F73EB9600BC33ED /* recipetypes.xml */; };
 		E653267A1F740EE000BC33ED /* RecipeTypesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65326791F740EE000BC33ED /* RecipeTypesTests.swift */; };
 		E653267C1F740F8400BC33ED /* RecipeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E653267B1F740F8400BC33ED /* RecipeTypes.swift */; };
+		E67E5D5B1F75F44600F49276 /* RowNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67E5D5A1F75F44600F49276 /* RowNames.swift */; };
+		E67E5D5D1F76085000F49276 /* DeleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67E5D5C1F76085000F49276 /* DeleteTableViewCell.swift */; };
+		E67E5D611F760F7200F49276 /* RecipeTypeFilterActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67E5D601F760F7200F49276 /* RecipeTypeFilterActionSheet.swift */; };
 		E6A882971F74B33B0091E1EC /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A882961F74B33B0091E1EC /* TextFieldTableViewCell.swift */; };
 		E6A882991F74B34F0091E1EC /* TwoLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A882981F74B34F0091E1EC /* TwoLabelTableViewCell.swift */; };
 		E6A8829B1F74B70C0091E1EC /* RecipeTypePickerViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A8829A1F74B70C0091E1EC /* RecipeTypePickerViewTableViewCell.swift */; };
@@ -85,6 +88,9 @@
 		E65326701F73EB9600BC33ED /* recipetypes.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = recipetypes.xml; sourceTree = "<group>"; };
 		E65326791F740EE000BC33ED /* RecipeTypesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTypesTests.swift; sourceTree = "<group>"; };
 		E653267B1F740F8400BC33ED /* RecipeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTypes.swift; sourceTree = "<group>"; };
+		E67E5D5A1F75F44600F49276 /* RowNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowNames.swift; sourceTree = "<group>"; };
+		E67E5D5C1F76085000F49276 /* DeleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTableViewCell.swift; sourceTree = "<group>"; };
+		E67E5D601F760F7200F49276 /* RecipeTypeFilterActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTypeFilterActionSheet.swift; sourceTree = "<group>"; };
 		E6A882961F74B33B0091E1EC /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		E6A882981F74B34F0091E1EC /* TwoLabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabelTableViewCell.swift; sourceTree = "<group>"; };
 		E6A8829A1F74B70C0091E1EC /* RecipeTypePickerViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTypePickerViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -266,6 +272,7 @@
 			children = (
 				E653267B1F740F8400BC33ED /* RecipeTypes.swift */,
 				E6A882B41F751A570091E1EC /* TableViewRowData.swift */,
+				E67E5D601F760F7200F49276 /* RecipeTypeFilterActionSheet.swift */,
 			);
 			path = DataObjects;
 			sourceTree = "<group>";
@@ -278,6 +285,7 @@
 				E6A8829A1F74B70C0091E1EC /* RecipeTypePickerViewTableViewCell.swift */,
 				E6A8829C1F74B7500091E1EC /* TextViewTableViewCell.swift */,
 				E6A882A01F74B8CD0091E1EC /* OneLabelTableViewCell.swift */,
+				E67E5D5C1F76085000F49276 /* DeleteTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -287,6 +295,7 @@
 			children = (
 				E6A882AF1F7518CE0091E1EC /* RecipeSaveError.swift */,
 				E6A882B21F7519D00091E1EC /* CellType.swift */,
+				E67E5D5A1F75F44600F49276 /* RowNames.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -593,6 +602,9 @@
 			files = (
 				E653266F1F73EB1C00BC33ED /* FileLoader.swift in Sources */,
 				E6A882B51F751A570091E1EC /* TableViewRowData.swift in Sources */,
+				E67E5D5D1F76085000F49276 /* DeleteTableViewCell.swift in Sources */,
+				E67E5D611F760F7200F49276 /* RecipeTypeFilterActionSheet.swift in Sources */,
+				E67E5D5B1F75F44600F49276 /* RowNames.swift in Sources */,
 				E6A882A71F74BC580091E1EC /* RecipeDetailViewModel.swift in Sources */,
 				E65326431F73E79700BC33ED /* recipeApp.xcdatamodeld in Sources */,
 				E6A882B01F7518CE0091E1EC /* RecipeSaveError.swift in Sources */,

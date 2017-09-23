@@ -14,4 +14,5 @@ enum cellType {
     case recipeTypePickerViewCell
     case textViewCell
     case oneLabelCell
+    case deleteCell
 }

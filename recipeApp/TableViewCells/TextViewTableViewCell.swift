@@ -13,11 +13,19 @@ class TextViewTableViewCell: UITableViewCell, UITextViewDelegate {
     
     @IBOutlet weak var textView: UITextView!
     var placeholderText: String?
+    var didEndEditing: ((String)->Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         textView.delegate = self
-        textView.text = placeholderText
+    }
+    
+    func updateCellPlaceholder(string: String) {
+        placeholderText = string
+        
+        if textView.text == "" || textView.text.count < 1 {
+            textView.text = placeholderText
+        } 
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -28,7 +36,7 @@ class TextViewTableViewCell: UITableViewCell, UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text != placeholderText {
-            print("Text is changed")
+            didEndEditing?(textView.text)
         }
     }
 }
