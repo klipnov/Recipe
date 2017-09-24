@@ -187,6 +187,7 @@
 		E65326391F73E79700BC33ED /* recipeApp */ = {
 			isa = PBXGroup;
 			children = (
+				E6E07A111F775844006DCD9F /* Extensions */,
 				E66129281F761C8800DF4654 /* UIObjects */,
 				E6B1992D1F7543D8003D4430 /* Protocols */,
 				E6A882AE1F75189F0091E1EC /* Enums */,
@@ -317,6 +318,13 @@
 				E6B1992E1F7543FD003D4430 /* AlertDisplaying.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		E6E07A111F775844006DCD9F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E6E26B6D1F742A67008A969A /* ViewModels */ = {
