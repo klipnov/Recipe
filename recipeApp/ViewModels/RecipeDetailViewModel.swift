@@ -9,9 +9,8 @@
 import UIKit
 import DTModelStorage
 
-class RecipeDetailViewModel {
+class RecipeDetailViewModel: CoreDataOperations {
     
-    let viewContext = CoreDataManager.shared.persistentContainer.viewContext
     var recipe: Recipe?
     var sectionNames = ["", "Ingredients", "Steps"]
     var rowData = MemoryStorage()
