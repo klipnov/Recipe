@@ -17,7 +17,7 @@ class RecipeTypesPickerViewTableViewCell: UITableViewCell, UIPickerViewDelegate,
     override func awakeFromNib() {
         super.awakeFromNib()
         pickerView.dataSource = self
-        pickerView.delegate = self
+        pickerView.delegate = self        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

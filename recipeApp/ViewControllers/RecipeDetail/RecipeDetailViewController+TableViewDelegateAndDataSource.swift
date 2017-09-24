@@ -103,6 +103,7 @@ extension RecipeDetailTableViewController {
         switch rowData.rowName {
         case .recipeType:
             viewModel.togglePickerRow()
+            viewModel.setDefaultRecipeTypeIfNotSet()
         case .deleteRecipe:
             showConfirmationAlert(title: "Delete \(viewModel.recipe!.name!)?", message: "Recipe deletion cannot be undone", confirmHandler: {
                 self.viewModel.deleteRecipe()

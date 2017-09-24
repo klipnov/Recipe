@@ -84,7 +84,9 @@ class RecipeDetailViewModel: CoreDataOperations {
     func updateRecipeType(string: String) {
         
         if let currentRecipeTypeRow = rowData.item(at: IndexPath(row: 1, section: 0)) as? TableViewRowData {
-            let newRecipeTypeRow = TableViewRowData(rowName: .recipeType, data: string, cellType: .twoLabelCell)
+            let newRecipeTypeRow = TableViewRowData(rowName: .recipeType,
+                                                    data: string,
+                                                    cellType: .twoLabelCell)
             do {
                 try rowData.replaceItem(currentRecipeTypeRow, with: newRecipeTypeRow)
                 didSelectPickerString?(IndexPath(row: 1, section: 0))
@@ -104,6 +106,21 @@ class RecipeDetailViewModel: CoreDataOperations {
         guard recipe?.type != nil else {
             throw RecipeSaveError.typeIsEmpty
         }
+    }
+    
+    func setDefaultRecipeTypeIfNotSet() {
+        
+        if recipe?.type == nil {
+            let recipeTypes = RecipeTypes()
+            
+            guard let firstString = recipeTypes.types.first else  {
+                return
+            }
+            
+            recipe?.type = firstString
+            updateRecipeType(string: firstString)
+        }
+        
     }
     
     //Mark: - Create, Edit, save and delete
