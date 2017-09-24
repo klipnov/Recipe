@@ -19,9 +19,11 @@ class RecipeListViewModel: CoreDataOperations {
         
         let predicate: NSPredicate?
         
+        // if filterBy is not "All" create a predicate
         if let filterBy = filterBy, filterBy != "All" {
             predicate = NSPredicate(format: "type == %@", filterBy)
         } else {
+            // else that means fetch all recipes
             predicate = nil
         }
         

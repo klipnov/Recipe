@@ -54,7 +54,7 @@ class RecipeListViewModelTests: XCTestCase {
         //start the test
         let viewModel = RecipeListViewModel()
         
-        viewModel.fetchRecipes()
+        viewModel.fetchRecipes(filterBy: "All")
         
         let recipes = viewModel.recipes
         
@@ -80,7 +80,7 @@ class RecipeListViewModelTests: XCTestCase {
             XCTAssertEqual(viewModel.recipes[0].name, "Test Recipe")
         }
         
-        viewModel.fetchRecipes()
+        viewModel.fetchRecipes(filterBy: "All")
         
         wait(for: [expectation], timeout: 2.0)
     }

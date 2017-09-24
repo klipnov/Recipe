@@ -75,7 +75,7 @@ class RecipeDetailViewModelTests: XCTestCase {
         
         let viewModel = RecipeDetailViewModel()
         
-        viewModel.createANewRecipe()
+        viewModel.createNewRecipe()
         
         //Make sure a new recipe is created
         XCTAssertTrue(viewModel.recipe != nil)
@@ -121,7 +121,7 @@ class RecipeDetailViewModelTests: XCTestCase {
         let viewModel = RecipeDetailViewModel()
         
         //create a new recipe
-        viewModel.createANewRecipe()
+        viewModel.createNewRecipe()
         
         viewModel.recipe?.name = "Test"
         viewModel.recipe?.type = nil
@@ -139,7 +139,7 @@ class RecipeDetailViewModelTests: XCTestCase {
     func testViewModelHasDefaultRowDataAndSectionNames() {
         
         let viewModel = RecipeDetailViewModel()
-        
+        viewModel.initializeRowData(newRecipe: true)
         //rowData is not nil
         XCTAssertNotNil(viewModel.rowData)
         
@@ -148,7 +148,7 @@ class RecipeDetailViewModelTests: XCTestCase {
             XCTAssertTrue(true)
             
             //rowData has default data after initialize
-            XCTAssertEqual(data.rowName, "Recipe Name")
+            XCTAssertEqual(data.rowName.rawValue, "Recipe Name")
         } else {
             XCTAssertTrue(false)
         }
